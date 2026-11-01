@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benitez Industries</title>
+
+<style>
+/* =================================
+   GLOBAL SETTINGS
+================================= */
+
+:root {
+    --bg: #111111;
+    --panel: #1b1b1b;
+    --text: #f1f1f1;
+    --muted: #a0a0a0;
+    --border: rgba(255,255,255,0.10);
+    --accent: #c5c5c5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    animation: appear 0.3s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(7px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =================================
+   NAVIGATION
+================================= */
+
+.navbar {
+    height: 76px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(17,17,17,0.94);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+}
+
+.brand {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.brand span {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links button {
+    border: none;
+    background: none;
+    color: var(--muted);
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.nav-links button:hover {
+    color: white;
+}
+
+.back-button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* =================================
+   HEADQUARTERS
+================================= */
+
+.hero {
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 65px 20px;
+    background:
+        radial-gradient(
+            ellipse at center,
+            #303030 0%,
+            #1c1c1c 48%,
+            #101010 100%
+        );
+}
+
+.hero-logo {
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-logo img {
+    width: 680px;
+    max-width: 480vw;
+    height: auto;
+    object-fit: contain;
+}
+.hero h1 {
+    font-size: clamp(35px, 6vw, 65px);
+    letter-spacing: 5px;
+    font-weight: 750;
+}
+
+.hero .slogan {
+    color: #c5c5c5;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 540px;
+    line-height: 1.7;
+    font-size: 14px;
+    margin-top: 27px;
+}
+
+.section {
+    padding: 55px 7%;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading small {
+    color: #a0a0a0;
+    letter-spacing: 3px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    margin-top: 9px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.division-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.division-card {
+    min-height: 245px;
+    padding: 28px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.division-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--card-color);
+    background: var(--card-hover);
+}
+
+.division-card::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--card-color);
+    opacity: 0.13;
+    border-radius: 50%;
+    right: -65px;
+    top: -65px;
+}
+
+.card-number {
+    font-size: 11px;
+    color: var(--card-color);
+    letter-spacing: 2px;
+}
+
+.division-card h3 {
+    font-size: 27px;
+    letter-spacing: 2px;
+    margin: 12px 0;
+}
+
+.division-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.enter {
+    margin-top: 25px;
+    color: var(--card-color);
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.aphelion-card {
+    --card-color: #83b9f5;
+    --card-hover: #252525;
+}
+
+.aerodyne-card {
+    --card-color: #69d6b9;
+    --card-hover: #252525;
+}
+
+.meridian-card {
+    --card-color: #c5a0f3;
+    --card-hover: #252525;
+}
+
+.mission-statement {
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    padding-top: 30px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.mission-statement strong {
+    color: white;
+}
+
+/* =================================
+   DIVISION THEMES
+================================= */
+
+.division-page {
+    --division-accent: #fff;
+    --division-bg: #101820;
+    --division-panel: #192633;
+    background: var(--division-bg);
+    min-height: 100vh;
+}
+
+.division-page .navbar {
+    background: var(--division-bg);
+}
+
+.division-hero {
+    min-height: 330px;
+    padding: 65px 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.division-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--division-accent);
+    text-transform: uppercase;
+}
+
+.division-hero h1 {
+    font-size: clamp(38px, 7vw, 65px);
+    letter-spacing: 4px;
+    margin: 17px 0 10px;
+}
+
+.division-hero p {
+    color: var(--muted);
+    max-width: 550px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.division-content {
+    padding: 45px 7%;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.info-card {
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--division-panel);
+}
+
+.info-card h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: var(--division-accent);
+}
+
+.info-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.division-aphelion {
+    --division-accent: #83b9f5;
+    --division-bg: #101d2d;
+    --division-panel: #192b40;
+}
+
+.division-aerodyne {
+    --division-accent: #69d6b9;
+    --division-bg: #101f20;
+    --division-panel: #1b302e;
+}
+
+.division-meridian {
+    --division-accent: #c5a0f3;
+    --division-bg: #201a2c;
+    --division-panel: #30253e;
+}
+
+/* =================================
+   PROJECTS
+================================= */
+
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.project-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px;
+}
+
+.project-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.project-status {
+    font-size: 10px;
+    color: #9eacbb;
+    letter-spacing: 1px;
+    margin-top: 17px;
+    display: block;
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 25px 7%;
+    color: #788899;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 800px) {
+    .division-grid,
+    .project-list {
+        grid-template-columns: 1fr;
+    }
+
+    .division-card {
+        min-height: 200px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .nav-links button {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        height: auto;
+        min-height: 70px;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 15px 5%;
+    }
+
+    .brand {
+        font-size: 14px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-links button {
+        font-size: 10px;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =================================
+     MAIN HEADQUARTERS
+================================= -->
+
+<div id="home" class="page active">
+
+    <nav class="navbar">
+        <div class="brand" onclick="showPage('home')">
+            BENITEZ <span>INDUSTRIES</span>
+        </div>
+
+        <div class="nav-links">
+            <button onclick="showPage('home')">HOME</button>
+            <button onclick="scrollToSection('divisions')">DIVISIONS</button>
+            <button onclick="scrollToSection('projects')">PROJECTS</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-logo">
+    <img src="benitez-logo.png" alt="Benitez Industries Logo">
+</div>
+
+        <div class="slogan">Pursuing the Unknown.</div>
+
+        <p>
+            An independent scientific and engineering initiative
+            dedicated to research, technological development,
+            and the exploration of the unknown.
+        </p>
+    </header>
+
+    <main>
+
+        <section class="section" id="divisions">
+
+            <div class="section-heading">
+                <small>OUR ORGANIZATION</small>
+                <h2>Explore Our Divisions</h2>
+            </div>
+
+            <div class="division-grid">
+
+                <div class="division-card aphelion-card"
+                     onclick="showPage('aphelion')">
+
+                    <div>
+                        <div class="card-number">DIVISION 01</div>
+                        <h3>APHELION</h3>
+                        <p>
+                            Space Sciences Division.
+                            Researching the universe,
+                            celestial bodies, and the
+                            fundamental nature of space.
+                        </p>
+                    </div>
+
+                    <div class="enter">EXPLORE DIVISION →</div>
+                </div>
+
+                <div class="division-card aerodyne-card"
+                     onclick="showPage('aerodyne')">
+
+                    <div>
+                        <div class="card-number">DIVISION 02</div>
+                        <h3>AERODYNE</h3>
+                        <p>
+                            Aerospace Engineering & Systems.
+                            Designing and developing the
+                            technology that makes exploration possible.
+                        </p>
+                    </div>
+
+                    <div class="enter">EXPLORE DIVISION →</div>
+                </div>
+
+                <div class="division-card meridian-card"
+                     onclick="showPage('meridian')">
+
+                    <div>
+                        <div class="card-number">DIVISION 03</div>
+                        <h3>MERIDIAN</h3>
+                        <p>
+                            Mission Operations Division.
+                            Coordinating, executing, and
+                            managing exploration missions.
+                        </p>
+                    </div>
+
+                    <div class="enter">EXPLORE DIVISION →</div>
+                </div>
+
+            </div>
+
+            <div class="mission-statement">
+                <strong>Our philosophy:</strong>
+                Discover the unknown. Develop the means to understand it.
+                Engineer the technology to explore it.
+            </div>
+
+        </section>
+
+        <section class="section" id="projects">
+
+            <div class="section-heading">
+                <small>ACTIVE INITIATIVES</small>
+                <h2>Projects & Research</h2>
+            </div>
+
+            <div class="project-list">
+
+                <div class="project-card">
+                    <h3>VEGA</h3>
+                    <p>
+                        Research into propulsion performance,
+                        mass optimization, and flight precision.
+                    </p>
+                    <span class="project-status">
+                        APHELION-LED · PLANNED
+                    </span>
+                </div>
+
+                <div class="project-card">
+                    <h3>ATLAS</h3>
+                    <p>
+                        Project description to be established.
+                    </p>
+                    <span class="project-status">
+                        PLANNED
+                    </span>
+                </div>
+
+                <div class="project-card">
+                    <h3>PHOTONIC</h3>
+                    <p>
+                        Project description to be established.
+                    </p>
+                    <span class="project-status">
+                        PLANNED
+                    </span>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <span>BENITEZ INDUSTRIES © 2026</span>
+        <span>PURSUING THE UNKNOWN.</span>
+    </footer>
+
+</div>
+
+
+<!-- =================================
+     APHELION HOMEPAGE
+================================= -->
+
+<div id="aphelion" class="page division-page division-aphelion">
+
+    <nav class="navbar">
+        <div class="brand" onclick="showPage('home')">
+            APHELION
+        </div>
+
+        <button class="back-button"
+                onclick="showPage('home')">
+            ← HEADQUARTERS
+        </button>
+    </nav>
+
+    <header class="division-hero">
+        <div class="division-label">DIVISION 01 · BENITEZ INDUSTRIES</div>
+
+        <h1>APHELION</h1>
+
+        <p>
+            SPACE SCIENCES DIVISION
+
+            <br><br>
+
+            Investigating the universe through scientific
+            research, mathematical analysis, and the study
+            of celestial phenomena.
+        </p>
+    </header>
+
+    <section class="division-content">
+
+        <div class="section-heading">
+            <small>APHELION</small>
+            <h2>Division Overview</h2>
+        </div>
+
+        <div class="content-grid">
+
+            <div class="info-card">
+                <h3>Scientific Research</h3>
+                <p>
+                    Astronomy, astrophysics, planetary science,
+                    orbital mechanics, and the study of
+                    celestial environments.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Data & Analysis</h3>
+                <p>
+                    Scientific observations, mathematical models,
+                    simulations, data processing, and
+                    interpretation of discoveries.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Research Objectives</h3>
+                <p>
+                    Establishing scientific questions,
+                    defining research goals, and developing
+                    experimental requirements.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Project Vega</h3>
+                <p>
+                    Lead scientific research into propulsion
+                    performance, mass optimization, and
+                    flight precision.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <span>APHELION · DIVISION 01</span>
+        <span>BENITEZ INDUSTRIES</span>
+    </footer>
+
+</div>
+
+
+<!-- =================================
+     AERODYNE HOMEPAGE
+================================= -->
+
+<div id="aerodyne" class="page division-page division-aerodyne">
+
+    <nav class="navbar">
+        <div class="brand" onclick="showPage('home')">
+            AERODYNE
+        </div>
+
+        <button class="back-button"
+                onclick="showPage('home')">
+            ← HEADQUARTERS
+        </button>
+    </nav>
+
+    <header class="division-hero">
+        <div class="division-label">DIVISION 02 · BENITEZ INDUSTRIES</div>
+
+        <h1>AERODYNE</h1>
+
+        <p>
+            AEROSPACE ENGINEERING & SYSTEMS
+
+            <br><br>
+
+            Transforming scientific concepts into functional
+            technology through engineering, development,
+            and systems integration.
+        </p>
+    </header>
+
+    <section class="division-content">
+
+        <div class="section-heading">
+            <small>AERODYNE</small>
+            <h2>Division Overview</h2>
+        </div>
+
+        <div class="content-grid">
+
+            <div class="info-card">
+                <h3>Aerospace Engineering</h3>
+                <p>
+                    Aerospace structures, vehicle design,
+                    aerodynamics, and engineering systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Technology Development</h3>
+                <p>
+                    Robotics, electronics, programming,
+                    instrumentation, and experimental systems.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Testing & Integration</h3>
+                <p>
+                    Developing, integrating, and validating
+                    components and systems through
+                    controlled testing and simulation.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Project Vega</h3>
+                <p>
+                    Engineering experimental systems and
+                    instrumentation based on Aphelion's
+                    research requirements.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <span>AERODYNE · DIVISION 02</span>
+        <span>BENITEZ INDUSTRIES</span>
+    </footer>
+
+</div>
+
+
+<!-- =================================
+     MERIDIAN HOMEPAGE
+================================= -->
+
+<div id="meridian" class="page division-page division-meridian">
+
+    <nav class="navbar">
+        <div class="brand" onclick="showPage('home')">
+            MERIDIAN
+        </div>
+
+        <button class="back-button"
+                onclick="showPage('home')">
+            ← HEADQUARTERS
+        </button>
+    </nav>
+
+    <header class="division-hero">
+        <div class="division-label">DIVISION 03 · BENITEZ INDUSTRIES</div>
+
+        <h1>MERIDIAN</h1>
+
+        <p>
+            MISSION OPERATIONS DIVISION
+
+            <br><br>
+
+            Responsible for coordinating and executing
+            missions, monitoring operations, and returning
+            valuable information to the organization.
+        </p>
+    </header>
+
+    <section class="division-content">
+
+        <div class="section-heading">
+            <small>MERIDIAN</small>
+            <h2>Division Overview</h2>
+        </div>
+
+        <div class="content-grid">
+
+            <div class="info-card">
+                <h3>Mission Operations</h3>
+                <p>
+                    Mission coordination, operational planning,
+                    execution, and monitoring.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Navigation & Communications</h3>
+                <p>
+                    Mission navigation, communication systems,
+                    telemetry, and operational coordination.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Mission Reporting</h3>
+                <p>
+                    Recording results, documenting anomalies,
+                    and transmitting scientific observations
+                    to Aphelion.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Project Vega</h3>
+                <p>
+                    Coordinating approved experimental
+                    operations and reporting collected
+                    measurements and observations.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <span>MERIDIAN · DIVISION 03</span>
+        <span>BENITEZ INDUSTRIES</span>
+    </footer>
+
+</div>
+
+
+<!-- =================================
+     JAVASCRIPT NAVIGATION
+================================= -->
+
+<script>
+
+function showPage(pageId) {
+
+    // Hide every page
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    // Display selected page
+    const selectedPage = document.getElementById(pageId);
+
+    if (selectedPage) {
+        selectedPage.classList.add("active");
+    }
+
+    // Return to top when changing pages
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function scrollToSection(sectionId) {
+
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+        section.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+}
+
+</script>
+
+</body>
+</html>
